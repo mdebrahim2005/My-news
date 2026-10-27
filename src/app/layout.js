@@ -1,16 +1,22 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import Navber from "./component/shear/navber/page";
-import Header from "./component/shear/header/page";
+
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+ export const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata = {
@@ -23,9 +29,9 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme="light"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className= " h-full antialiased"
     >
-      <body className="min-h-full flex flex-col"suppressHydrationWarning
+    <body className={`${poppins.variable} min-h-full flex flex-col`} suppressHydrationWarning
       >
      
       {children}</body>
