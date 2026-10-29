@@ -1,3 +1,5 @@
+import LeftSidebar from "../component/Homepage/All/leftsidber";
+import RightSidebar from "../component/Homepage/All/rightsidber";
 
 
 const getapi = async () => {
@@ -8,35 +10,45 @@ const res = await fetch("https://openapi.programming-hero.com/api/news/categorie
   return data.data;
 }
 
+const getnewsapi = async (category_Id) => {
+const res = await fetch(`https://openapi.programming-hero.com/api/news/category/${category_Id}`, {
+    cache: "force-cache", 
+  });
+ const data = await res.json();
+  return data.data;
+}
+
 export default async function Home() {
   const Catagories = await getapi();
   console.log(Catagories.news_category , "catagories");
+  
+  const news = await getnewsapi("4");
+  console.log(news, "news");
+
   return (
     <div className="container mx-auto grid grid-cols-12 gap-4 my-10">
 
       <div className=" font-bold col-span-3">
-      <h2 className="text-3xl font-bold mb-4">All Catagories</h2>
-       <ul className="flex flex-col gap-2 ">
-       {
-        Catagories.news_category.map((catagory) => (
-          <li key={catagory.category_id} className="bg-white text-black font-bold rounded-md">
-            {catagory.category_name}
-          </li>
-        ))
-       }
-
-       </ul>
-
+     
+             <LeftSidebar Catagories={Catagories} activeId={"0"}/>
        
       </div>
 
       <div className="bg-gray-800 text-3xl font-bold col-span-6">
-        All News
+        All News 
+        {
+          news.map((newsItem) => (
+            <div key={newsItem._id} className="bg-red-400 p-4 rounded-md mb-4 space-y-3">
+              <h3 className="text-xl font-semibold rounded-md border  ">{newsItem.title}</h3>
+              {/* <p className="text-gray-300">{newsItem.details}</p> */}
+            </div>
+          ))
+        }
 
       </div>
 
-      <div className="bg-amber-500 text-3xl font-bold col-span-3">
-        All social icons
+      <div className=" col-span-3">
+       < RightSidebar />
 
       </div>
       
