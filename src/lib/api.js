@@ -11,3 +11,11 @@ export const getNewsByCategory = async (id) => {
   const data = await res.json();
   return data.data;
 };
+
+export async function getnewsbyid(id) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return data.data;
+}

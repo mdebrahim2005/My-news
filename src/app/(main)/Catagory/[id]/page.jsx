@@ -1,6 +1,7 @@
 import LeftSidebar from "@/app/component/Homepage/All/leftsidber";
 import RightSidebar from "@/app/component/Homepage/All/rightsidber";
 import { getCategories, getNewsByCategory } from "@/lib/api";
+import NewsCard from "../../../component/Homepage/All/NewsCard";
 
 export default async function NewsCatagorie({ params }) {
   const { id } = await params;
@@ -13,7 +14,7 @@ export default async function NewsCatagorie({ params }) {
   );
 
   return (
-    <div className="container mx-auto grid grid-cols-12 gap-4 my-10">
+    <div className="container mx-auto  grid grid-cols-12 gap-4 my-10">
       <div className="col-span-3">
         <LeftSidebar Catagories={Catagories} activeId={id} />
       </div>
@@ -24,15 +25,15 @@ export default async function NewsCatagorie({ params }) {
         </h2>
         {news?.length > 0 ? (
           news.map((item) => (
-            <div key={item._id} className="p-4 rounded-md mb-4 border space-y-2">
-              <h3 className="text-xl font-semibold">{item.title}</h3>
-              <p className="text-sm text-gray-500">
-                {item.author?.name} • {item.author?.published_date}
-              </p>
-            </div>
+            <NewsCard key={item._id} item={item}   >
+              
+              
+                {/* {item.author?.name} • {item.author?.published_date} */}
+              
+            </NewsCard>
           ))
         ) : (
-          <p>No news found</p>
+          <p className="text-2xl flex justify-center items-center mt-5">No news found</p>
         )}
       </div>
 

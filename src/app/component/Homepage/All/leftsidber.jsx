@@ -8,8 +8,8 @@ export default function LeftSidebar({ Catagories, activeId }) {
         {Catagories.news_category.map((catagory) => (
           <li
             key={catagory.category_id}
-            className={`text-black p-2 rounded-md cursor-pointer hover:bg-slate-200 ${
-              activeId === catagory.category_id ? "bg-slate-200" : ""
+            className={`text-black p-2 rounded-md cursor-pointer hover:bg-slate-300 ${
+              activeId === catagory.category_id ? "bg-slate-300" : ""
             }`}
           >
             <Link href={`/catagory/${catagory.category_id}`} className="block">
