@@ -3,7 +3,7 @@ import Navber from '../component/shear/navber/page'
 
 export default function Authlayout({children}) {
   return (
-    <div>Authlayout
+    <div>
       
       <Navber />
       {children}
