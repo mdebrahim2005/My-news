@@ -1,7 +1,7 @@
 import React from 'react'
-import Navber from '../component/shear/navber/page'
-import Header from '../component/shear/header/page'
-import Bakingnews from '../component/shear/bakingnews/page'
+import Navber from '../component/shear/navber/navber'
+import Header from '../component/shear/header/header'
+import Bakingnews from '../component/shear/bakingnews/bakingnews'
 
 export default function Mainlayout({children}) {
   return (
