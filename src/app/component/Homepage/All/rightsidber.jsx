@@ -1,21 +1,45 @@
+"use client";
 import Image from "next/image";
 import { FaGoogle, FaGithub, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import swimming from "@/assets/swimming.png";
 import classImg from "@/assets/class.png";
 import playgroundImg from "@/assets/playground.png";
 import bgBanner from "@/assets/bg.png";
+import { authClient } from "@/lib/auth-client";
 
 export default function RightSidebar() {
+  const handleGoogleLogin = async () => {
+       const data = await authClient.signIn.social({
+    provider: "google",
+    callbackURL: "/",
+
+  });
+  console.log("Google login data:", data);
+} 
+
+ const handleGithubLogin = async () => {
+  const data = await authClient.signIn.social({
+    provider: "github",
+    callbackURL: "/",
+  });
+  console.log("Github login data:", data);
+};
+
   return (
     <aside className="w-full space-y-8">
       {/* 1. Login With Section */}
       <div>
         <h2 className="text-lg font-bold text-gray-800 mb-4">Login With</h2>
         <div className="flex flex-col gap-2.5">
-          <button className="btn btn-outline border-blue-500 text-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white normal-case font-medium flex items-center justify-center gap-2 rounded-md h-10 min-h-0">
+          <button className="btn btn-outline border-blue-500 text-blue-500
+           hover:bg-blue-500 hover:border-blue-500
+            hover:text-white normal-case font-medium flex items-center justify-center gap-2
+             rounded-md h-10 min-h-0" onClick={handleGoogleLogin}>
             <FaGoogle /> Login With Google
           </button>
-          <button className="btn btn-outline border-gray-800 text-gray-800 hover:bg-gray-800 hover:border-gray-800 hover:text-white normal-case font-medium flex items-center justify-center gap-2 rounded-md h-10 min-h-0">
+          <button className="btn btn-outline border-gray-800 text-gray-800
+           hover:bg-gray-800 hover:border-gray-800 hover:text-white normal-case font-medium 
+           flex items-center justify-center gap-2 rounded-md h-10 min-h-0" onClick={handleGithubLogin}>
             <FaGithub /> Login With Github
           </button>
         </div>
